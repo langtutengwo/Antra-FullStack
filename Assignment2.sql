@@ -97,6 +97,16 @@ GROUP By p.ProductName
 
 --Question 17
 --a.
+select city from Customers
+except
+(
+select city from customers
+group by city
+having COUNT(*)=1
+union 
+select city from customers
+group by city
+having COUNT(*)=0)
 --b.
 select city 
 from customers 
