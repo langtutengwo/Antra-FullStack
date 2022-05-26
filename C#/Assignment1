@@ -58,6 +58,20 @@ number of bytes in memory that each of the following number types uses, and the
 minimum and maximum values they can have: sbyte, byte, short, ushort, int, uint, long,
 ulong, float, double, and decimal.
 Composite Formatting to learn how to align text in a console application
+public void NumSize()
+{
+    string[] types = new string[] {"sbyte", "byte", "short", "ushort",
+                                   "int", "uint", "long", "ulong", "float",
+                                   "double", "decimal"};
+    int[] bytes = new int[] { 1, 1, 2, 2, 4, 4, 4, 8, 8, 8, 16 };
+    decimal[] min = new decimal[] {-128, 0, -32768, 0, -2147483648,
+                                        0, -9223372036854775808, 0,
+                                        };
+    decimal[] max = new decimal[] {127, 255, 32767, 65535, 2147483647,
+                                   4294967295, 9223372036854775807,
+                                   18446744073709551615};
+
+}
 
 2. Write program to enter an integer number of centuries and convert it to years, days, hours,
 minutes, seconds, milliseconds, microseconds, nanoseconds. Use an appropriate data
