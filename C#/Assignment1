@@ -58,6 +58,7 @@ number of bytes in memory that each of the following number types uses, and the
 minimum and maximum values they can have: sbyte, byte, short, ushort, int, uint, long,
 ulong, float, double, and decimal.
 Composite Formatting to learn how to align text in a console application
+
 2. Write program to enter an integer number of centuries and convert it to years, days, hours,
 minutes, seconds, milliseconds, microseconds, nanoseconds. Use an appropriate data
 type for every data conversion. Beware of overflows!
@@ -69,6 +70,26 @@ Input: 5
 Output: 5 centuries = 500 years = 182621 days = 4382904 hours = 262974240
 minutes = 15778454400 seconds = 15778454400000 milliseconds = 15778454400000000
 microseconds = 15778454400000000000 nanoseconds
+public int centuries = 0;
+public Centuries(int num)
+{
+    centuries = num;
+}
+public void Conversion()
+{
+    int years = centuries * 100;
+    double days = years * 365.24;
+    double hours = days * 24;
+    double minutes = hours * 60;
+    double seconds = minutes * 60;
+    decimal milliseconds = (decimal)(seconds * 1000);
+    decimal microseconds = milliseconds * 1000;
+    decimal nanoseconds = microseconds * 1000;
+    Console.WriteLine($"{centuries} centuries = {years} years = " +
+        $"{days} days = {hours} hours = {minutes} minutes = {seconds} seconds" +
+        $" = {milliseconds} milliseconds = {microseconds} microseconds = " +
+        $"{nanoseconds} nanoseconds");
+}
 
 Test your Knowledge
 1. What happens when you divide an int variable by 0?
@@ -118,18 +139,18 @@ Create a console application in Chapter03 named Exercise03 that outputs a simula
 FizzBuzz game counting up to 100. The output should look something like the following
 screenshot:
 public string FizzBuzz(int num)
-        {
-            if (num / 3 == 0)
-            {
-                if (num / 5 == 0) return "fizzbuzz";
-                else return "fizz";
-            }   
-            else if (num / 5 == 0)
-            {
-                return "buzz";
-            }
-            return "not fizz or buzz";
-        }
+{
+    if (num / 3 == 0)
+    {
+        if (num / 5 == 0) return "fizzbuzz";
+        else return "fizz";
+    }   
+    else if (num / 5 == 0)
+    {
+        return "buzz";
+    }
+    return "not fizz or buzz";
+}
 
 What will happen if this code executes?
 int max = 500;
@@ -158,7 +179,18 @@ second inner loop prints out the correct number of stars.
 *****
 *******
 *********
-
+public class PrintPyramid
+{
+    public void Pyramid(int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            string blank = new string(' ', n - 1 - i);
+            string stars = new string('*', 1 + i * 2);
+            Console.WriteLine(blank + stars + blank);
+        }
+    }
+}
 
 3. Write a program that generates a random number between 1 and 3 and asks the user to
 guess what the number is. Tell the user if they guess low, high, or get the correct answer.
@@ -192,6 +224,21 @@ how many days old the person with that birth date is currently.
 For extra credit, output the date of their next 10,000 day (about 27 years) anniversary.
 Note: once you figure out their age in days, you can calculate the days until the next
 anniversary using int daysToNextAnniversary = 10000 - (days % 10000); .
+public class CalDays
+{
+    public int Days(DateTime date)
+    {
+        return (DateTime.Today - date).Days;
+    }
+
+    public DateTime nextAnniversary(DateTime date)
+    {
+        int days = Days(date);
+        DateTime anniversaryDate = date.AddDays(10000 - (days % 10000));
+        return anniversaryDate;
+    }
+}
+
 5. Write a program that greets the user using the appropriate greeting for the time of day.
 Use only if , not else or switch , statements to do so. Be sure to include the following
 greetings:
@@ -205,6 +252,35 @@ Formatting. When testing your program, you'll probably want to use a DateTime va
 you define, rather than the current time. Once you're confident the program works
 correctly, you can substitute DateTime.Now for your variable (or keep your variable and just
 assign DateTime.Now as its value, which is often a better approach).
+public void Greet(DateTime time)
+{
+    TimeSpan morning = TimeSpan.Parse("09:00");
+    TimeSpan afternoon = TimeSpan.Parse("12:00");
+    TimeSpan evening = TimeSpan.Parse("18:00");
+    TimeSpan night = TimeSpan.Parse("22:00");
+
+    if (time.TimeOfDay >= morning && time.TimeOfDay < afternoon)
+    {
+        Console.WriteLine("Good Morning!");
+        return;
+    }
+    if (time.TimeOfDay >= afternoon && time.TimeOfDay < evening)
+    {
+        Console.WriteLine("Good Afternoon!");
+        return;
+    }
+    if (time.TimeOfDay >= evening && time.TimeOfDay < night)
+    {
+        Console.WriteLine("Good Evening!");
+        return;
+    }
+    if (time.TimeOfDay >= evening || time.TimeOfDay < morning)
+    {
+        Console.WriteLine("Good Morning!");
+        return;
+    }
+}
+
 6. Write a program that prints the result of counting up to 24 using four different increments.
 First, count by 1s, then by 2s, by 3s, and finally by 4s.
 Use nested for loops with your outer loop counting from 1 to 4. You inner loop should
@@ -216,12 +292,19 @@ Your output should look something like this:
 0,2,4,6,8,10,12,14,16,18,20,22,24
 0,3,6,9,12,15,18,21,24
 0,4,8,12,16,20,24
-Explore following topics
-C# operators
-Bitwise and shift operators
-Statement keywords
-Casting and type conversions
-Fundamentals of garbage collection
-$ - string interpolation
-Formatting types in .NET
-Iteration statements
+public class Counting
+{
+    public void PrintCounting()
+    {
+        for (int i = 1; i < 5; i++)
+        {
+            List<int> nums = new List<int>();
+            for (int j = 0; j < 25; j += i)
+            {
+                nums.Add(j);
+            }
+            Console.WriteLine(string.Join(' ', nums));
+        }
+    }
+}
+
