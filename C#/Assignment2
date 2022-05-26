@@ -176,6 +176,28 @@ Input Output
 4 1 1 4 2 3 4 4 1 2 4 9 3 The number 4 is the most frequent (occurs 5 times)
 7 7 7 0 2 2 2 0 10 10 10 The numbers 2, 7 and 10 have the same maximal
 frequence (each occurs 3 times). The leftmost of them is 7.
+public int MostFrequentNum(int[] nums)
+{
+    int result = 0;
+    int max = 0;
+    for (int i = 0; i < nums.Length; i++)
+    {
+        int count = 0;
+        for (int j = 0; j < nums.Length; j++)
+        {
+            if (nums[i] == nums[j])
+            {
+                count++;
+            }
+        }
+        if (count > max)
+        {
+            result = nums[i];
+        }
+    }
+    return result;
+}
+
 Practice Strings
 1. Write a program that reads a string from the console, reverses its letters and prints the
 result back at the console.
@@ -185,6 +207,21 @@ Print the letters of the string in back direction (from the last to the first) i
 Input Output
 sample elpmas
 24tvcoi92 29iocvt42
+public string Reverse(string str)
+{
+    char[] chars = str.ToCharArray();
+    chars.Reverse();
+    return chars.ToString();
+}
+
+public string ReverseByForLoop(string str)
+{
+    for (int i = str.Length - 1; i >= 0; i--)
+    {
+        Console.WriteLine(str[i]);
+    }
+}
+
 2. Write a program that reverses the words in a given sentence without changing the
 punctuation and spaces
 Use the following separators between the words: . , : ; = ( ) & [ ] " ' \ / ! ? (space).
@@ -195,11 +232,59 @@ C# is not C++, and PHP is not Delphi!
 Delphi not is PHP, and C++ not is C#!
 The quick brown fox jumps over the lazy dog /Yes! Really!!!/.
 Really Yes dog lazy the over jumps fox brown /quick! The!!!/.
+public string ReverseSentence(string str)
+{
+    string[] strs = str.Split(' ');
+    char[] specials = new char[] {'.', ',', ':', ';', '=', '(', ')', '&',
+               '[', ']', '"', '\'','\\', '/', '?', ' '};
+    foreach (string s in strs)
+    {
+        s.Trim(specials);
+    }
+    strs.Reverse();
+    string result = strs[0];
+    int index = 1;
+    foreach (char c in str)
+    {
+        if (specials.Contains(c))
+        {
+            result += c;
+        }
+        else
+        {   
+            if (index < strs.Length)
+            {
+                result += strs[index];
+                index++;
+            }
+        }
+    }
+}
+
 3. Write a program that extracts from a given text all palindromes, e.g. “ABBA”, “lamal”, “exe”
 and prints them on the console on a single line, separated by comma and space.Print all
 unique palindromes (no duplicates), sorted
 Hi,exe? ABBA! Hog fully a string: ExE. Bob
 a, ABBA, exe, ExE
+public string[] Palindromes(string str)
+{
+    string[] strs = str.Split(' ');
+    char[] specials = new char[] {'.', ',', ':', ';', '=', '(', ')', '&',
+               '[', ']', '"', '\'','\\', '/', '?'};
+    foreach (string s in strs)
+    {
+        s.Trim(specials);
+    }
+    string[] result = new string[str.Length];
+    foreach (string s in strs)
+    {
+        if (IsPalindromes(s))
+        {
+            result.Append(s);
+        }
+    }
+}
+
 4. Write a program that parses an URL given in the following format:
 [protocol]://[server]/[resource]
 The parsing extracts its parts: protocol, server and resource.
@@ -221,4 +306,30 @@ www.apple.com
 [protocol] = ""
 [server] = "www.apple.com"
 [resource] = ""
-
+public void ParseURL(string str)
+{
+    string protocol = "";
+    string server = "";
+    string resource = "";
+    int index1 = str.IndexOf("://");
+    if (index1 > 0)
+    {
+        int index2 = str.Substring(index1).IndexOf("/");
+        if (index2 > 0)
+        {
+            protocol = str.Substring(0, index1);
+            server = str.Substring(index1 + 3, index2 - index1 - 3);
+            resource = str.Substring(index2);
+        }
+        else
+        {
+            protocol = str.Substring(0, index1);
+            server = str.Substring(index1 + 3);
+        }
+    }else if (index1 < 0)
+    {
+        int index2 = str.IndexOf("/");
+        server = str.Substring(0, index2);
+        resource = str.Substring(index2);
+    }
+}
