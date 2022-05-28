@@ -1,35 +1,92 @@
 03 Object-Oriented Programming
 Test your knowledge
-1. What are the six combinations of access modifier keywords and what do they do? 2.
+1. What are the six combinations of access modifier keywords and what do they do? 
+Public. Objects that implement public access modifiers are accessible from everywhere in a project without any restrictions.
+Private. Objects that implement private access modifier are accessible only inside a class or a structure.
+Protected. The protected keyword implies that the object is accessible inside the class and in all classes that derive from that class.
+Internal. For Internal keyword, the access is limited exclusively to classes defined within the current project assembly.
+Protected Internal. we can access the protected internal member only in the same assembly or in a derived class in other assemblies.
+Private Protected. We can access members inside the containing class or in a class that derives from a containing class, but only in the same assembly(project).
+
+2.
 What is the difference between the static, const, and readonly keywords when applied to
 a type member?
+Constant and ReadOnly keyword is used to make a field constant which value cannot be modified. 
+The static keyword is used to make members static that can be shared by all the class objects.
+
 3. What does a constructor do?
+In c#, Constructor is a method that will invoke automatically whenever an instance of class or struct is created
+
 4. Why is the partial keyword useful?
+The partial keyword indicates that other parts of the class, struct, or interface can be defined in the namespace.
+
 5. What is a tuple?
+the tuples feature provides concise syntax to group multiple data elements in a lightweight data structure.
+
 6. What does the C# record keyword do?
+a new reference type that you can create instead of classes or structs
+
 7. What does overloading and overriding mean?
+Overloading: Methods in base class and its subclasses share the same method name and same input parameters
+Overriding: Methods in same class share the same method name, but different input parameters
+
 8. What is the difference between a field and a property?
+A field is a variable of any type that is declared directly in a class. 
+A property is a member that provides a flexible mechanism to read, write or compute the value of a private field.
+
 9. How do you make a method parameter optional?
+set default value
+use optional attribute
+overload the method
+
 10. What is an interface and how is it different from abstract class?
+ An abstract class allows you to create functionality that subclasses can implement or override. 
+ An interface only allows you to define functionality, not implement it. 
+ And whereas a class can extend only one abstract class, it can take advantage of multiple interfaces.
+
 11. What accessibility level are members of an interface?
+public
+
 12. True/False. Polymorphism allows derived classes to provide different implementations
 of the same method.
+True
+
 13. True/False. The override keyword is used to indicate that a method in a derived class is
 providing its own implementation of a method.
+False
+
 14. True/False. The new keyword is used to indicate that a method in a derived class is
 providing its own implementation of a method.
-15. True/False. Abstract methods can be used in a normal (non-abstract) class. 16.
-True/False. Normal (non-abstract) methods can be used in an abstract class. 17. True/False.
-Derived classes can override methods that were virtual in the base class. 18. True/False.
-Derived classes can override methods that were abstract in the base class. 19. True/False.
-In a derived class, you can override a method that was neither virtual non abstract in the
+False
+
+15. True/False. Abstract methods can be used in a normal (non-abstract) class. 
+False
+
+16.True/False. Normal (non-abstract) methods can be used in an abstract class. 
+17. True/False. Derived classes can override methods that were virtual in the base class. 
+True
+
+18. True/False. Derived classes can override methods that were abstract in the base class.
+True
+
+19. True/False. In a derived class, you can override a method that was neither virtual non abstract in the
 base class.
+False
+
 20. True/False. A class that implements an interface does not have to provide an
 implementation for all of the members of the interface.
+False
+
 21. True/False. A class that implements an interface is allowed to have other members that
 aren’t defined in the interface.
+True
+
 22. True/False. A class can have more than one base class.
+False
+
 23. True/False. A class can implement more than one interface.
+True
+
 Working with methods
 1. Let’s make a program that uses methods to accomplish a task. Let’s take an array and
 reverse the contents of it. For example, if you have 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, it would
@@ -62,6 +119,38 @@ and going up to the length of the array / 2. The number you use in the forloop w
 index of the first number to swap, and the other one will be the length of the array minus
 the index minus 1. This is to account for the fact that the array is 0-based. So basically,
 you’ll be swapping array[index]with array[arrayLength – index – 1].
+public int[] GenerateNums(int length)
+{
+    int[] arr = new int[length];
+    for (int i = 0; i < length; i++)
+    {
+        arr[i] = i;
+    }
+    return arr;
+}
+
+public void ReverseNums(int[] nums)
+{
+    for (int i = 0; i < nums.Length / 2; i++)
+    {
+        int temp = nums[i];
+        nums[i] = nums[nums.Length - 1 - i];
+        nums[nums.Length - 1 - i] = temp;
+    }
+}
+
+public void PrintNums(int[] nums)
+{
+    Console.WriteLine(string.Join(' ', nums));
+}
+
+public void Run(int length)
+{
+    int[] numbers = GenerateNums(length);
+    ReverseNums(numbers);
+    PrintNums(numbers);
+}
+
 2. The Fibonacci sequence is a sequence of numbers where the first two numbers are 1 and 1,
 and every other number in the sequence after it is the sum of the two numbers before it. So
 the third number is 1 + 1, which is 2. The fourth number is the 2nd number plus the 3rd,
@@ -80,17 +169,34 @@ Hint #1:Start with your base case. We know that if it is the 1st or 2nd number, 
 be 1.
 Hint #2:For every other item, how is it defined in terms of the numbers before it? Can you
 come up with an equation or formula that calls the Fibonaccimethod again?
+public int GenerateFib(int n)
+{
+    int fib = 0;
+    if (n == 1 || n == 2) return fib = 1;
+    return GenerateFib(n - 1) + GenerateFib(n -2);
+}
+
 Designing and Building Classes using object-oriented principles
 1. Write a program that that demonstrates use of four basic principles of
 object-oriented programming /Abstraction/, /Encapsulation/, /Inheritance/ and
 /Polymorphism/.
+
+
 2. Use /Abstraction/ to define different classes for each person type such as Student
 and Instructor. These classes should have behavior for that type of person.
+
+
 3. Use /Encapsulation/ to keep many details private in each class.
+
+
 4. Use /Inheritance/ by leveraging the implementation already created in the Person
 class to save code in Student and Instructor classes.
+
+
 5. Use /Polymorphism/ to create virtual methods that derived classes could override to
 create specific behavior such as salary calculations.
+
+
 6. Make sure to create appropriate /interfaces/ such as ICourseService, IStudentService,
 IInstructorService, IDepartmentService, IPersonService, IPersonService (should have
 person specific methods). IStudentService, IInstructorService should inherit from
@@ -114,6 +220,8 @@ Department
 Will have one Instructor as head
 Will have Budget for school year (start and end Date Time)
 Will offer list of courses
+
+
 7. Try creating the two classes below, and make a simple program to work with them, as
 described below
 Create a Color class:
@@ -137,12 +245,4 @@ A method that returns the number of times the ball has been thrown.
 Write some code in your Main method to create a few balls, throw them around a few
 times, pop a few, and try to throw them again, and print out the number of times that the
 balls have been thrown. (Popped balls shouldn’t have changed.)
-Explore following topics
-Fields
-Access modifiers
-Enumeration types
-Constructors
-Methods
-Properties
-Inheritance
-Interfaces
+
