@@ -465,7 +465,7 @@ public class Color
         c.Throw();
     }
 
-    Console.WriteLine(a.TimesOfThrown);
-    Console.WriteLine(b.TimesOfThrown);
-    Console.WriteLine(c.TimesOfThrown);
+    Console.WriteLine(a.TimesOfThrown());
+    Console.WriteLine(b.TimesOfThrown());
+    Console.WriteLine(c.TimesOfThrown());
 }
