@@ -27,8 +27,8 @@ the tuples feature provides concise syntax to group multiple data elements in a 
 a new reference type that you can create instead of classes or structs
 
 7. What does overloading and overriding mean?
-Overloading: Methods in base class and its subclasses share the same method name and same input parameters
-Overriding: Methods in same class share the same method name, but different input parameters
+Overriding: Methods in base class and its subclasses share the same method name and same input parameters
+Overloading: Methods in same class share the same method name, but different input parameters
 
 8. What is the difference between a field and a property?
 A field is a variable of any type that is declared directly in a class. 
@@ -180,22 +180,128 @@ Designing and Building Classes using object-oriented principles
 1. Write a program that that demonstrates use of four basic principles of
 object-oriented programming /Abstraction/, /Encapsulation/, /Inheritance/ and
 /Polymorphism/.
+public class OOP
+{
+    // Encapsulation
+    private string encapsulation = null;
+}
 
+// Abstraction
+public abstract class Abstract
+{
+    public abstract void AbstractMethod();
+    public void OverloadMethod()
+    {
+        Console.WriteLine("Hello Abstract class.");
+    }
+    // Polymorphism overloading
+    public void OverloadMethod(string str)
+    {
+        Console.WriteLine("Hello str class.");
+    }
+}
+
+// Inheritance
+public class Children : Abstract
+{
+    // Polymorphism overriding
+    public override void AbstractMethod()
+    {
+        Console.WriteLine("This is Inheritance.");
+    }
+
+}
 
 2. Use /Abstraction/ to define different classes for each person type such as Student
 and Instructor. These classes should have behavior for that type of person.
+public class Person
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
 
+}
+
+public class Student : Person { }
+
+public class Instuctor : Person { }
 
 3. Use /Encapsulation/ to keep many details private in each class.
+public class Person
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
 
+    private string address = "secret";
+
+}
+
+public class Student : Person
+{
+    private string address = "secret";
+}
+
+public class Instuctor : Person
+{
+    private string address = "secret";
+}
 
 4. Use /Inheritance/ by leveraging the implementation already created in the Person
 class to save code in Student and Instructor classes.
+public class Person
+{
+    public int id { get; set; }
+    public string name { get; set; }
 
+    private string address = "secret";
+
+    public void PrintId()
+    {
+        Console.WriteLine("Id is: ", id);
+    }
+}
 
 5. Use /Polymorphism/ to create virtual methods that derived classes could override to
 create specific behavior such as salary calculations.
+public class Person
+{
+    public int id { get; set; }
+    public string name { get; set; }
+    private int salary { get; set; }
 
+    private string address = "secret";
+
+    public void PrintId()
+    {
+        Console.WriteLine("Id is: ", id);
+    }
+
+    public virtual void Salary()
+    {
+        Console.WriteLine("The salary is: ", salary);
+    }
+}
+
+public class Student : Person
+{
+    private string address = "secret";
+    private int salary { get; set; }
+
+    public override void Salary()
+    {
+        Console.WriteLine("The salary is: ", salary * 10);
+    }
+}
+
+public class Instuctor : Person
+{
+    private string address = "secret";
+    private int salary { get; set; }
+
+    public override void Salary()
+    {
+        Console.WriteLine("The salary is: ", salary * 100);
+    }
+}
 
 6. Make sure to create appropriate /interfaces/ such as ICourseService, IStudentService,
 IInstructorService, IDepartmentService, IPersonService, IPersonService (should have
@@ -220,7 +326,37 @@ Department
 Will have one Instructor as head
 Will have Budget for school year (start and end Date Time)
 Will offer list of courses
+public interface IPersonService
+{
+    public int CalculateAge();
+    public decimal CalculateSalary();
+    public string GetAddress();
+}
 
+public interface ICourseService
+{
+    public string[] ListOfEnrolledStudent();
+}
+
+public interface IStudentService : IPersonService
+{
+    public string[] GetAllCourses();
+    public decimal[] GetGPAs();
+    public char[] GetGrades();
+}
+
+public interface IInstructorService : IPersonService
+{
+    public string GetDepartment();
+    public int GetYOE(DateTime joinDate);
+}
+
+public interface IDepartmentService
+{
+    public string GetHeadOfDepartment();
+    public decimal GetBudget(DateTime startTime, DateTime endTime);
+    public string[] ListOfCourses();
+}
 
 7. Try creating the two classes below, and make a simple program to work with them, as
 described below
@@ -245,4 +381,91 @@ A method that returns the number of times the ball has been thrown.
 Write some code in your Main method to create a few balls, throw them around a few
 times, pop a few, and try to throw them again, and print out the number of times that the
 balls have been thrown. (Popped balls shouldn’t have changed.)
+public class Color
+{
+    decimal redVaule = 0;
+    decimal greenVaule = 0;
+    decimal blueVaule = 0;
+    decimal alphaValue = 0;
+    public Color(decimal red, decimal green, decimal blue, decimal alpha)
+    {
+        redVaule = red;
+        greenVaule = green;
+        blueVaule = blue;
+        alphaValue = alpha;
+    }
 
+    public Color(decimal red, decimal green, decimal blue, decimal alpha = 255)
+    {
+        redVaule = red;
+        greenVaule = green;
+        blueVaule = blue;
+        alphaValue = alpha;
+    }
+
+    public void GetValues(Color colorInstance)
+    {
+        redVaule = colorInstance.redVaule;
+        greenVaule = colorInstance.greenVaule;
+        blueVaule = colorInstance.blueVaule;
+        alphaValue = colorInstance.alphaValue;
+    }
+
+    public decimal GetGrayscale()
+    {
+        return (redVaule + greenVaule + blueVaule) / 3;
+    }
+ }
+ 
+ public class Ball
+{
+    decimal size = 1;
+    Color color = new Color(0, 0, 0);
+    int thrownCount = 0;
+
+    public void Pop()
+    {
+        size = 0;
+    }
+
+    public void Throw()
+    {
+        if (size != 0)
+        {
+            thrownCount ++;
+        }
+    }
+
+    public int TimesOfThrown()
+    {
+        return thrownCount;
+    }
+}
+ 
+ static void Run()
+{
+    Ball a = new Ball();
+    Ball b = new Ball();
+    Ball c = new Ball();
+
+    for (int i = 0; i < 10; i++)
+    {
+        a.Throw();
+        b.Throw();
+        c.Throw();
+    }
+
+    a.Pop();
+    b.Pop();
+
+    for (int i = 0; i < 5; i++)
+    {
+        a.Throw();
+        b.Throw();
+        c.Throw();
+    }
+
+    Console.WriteLine(a.TimesOfThrown);
+    Console.WriteLine(b.TimesOfThrown);
+    Console.WriteLine(c.TimesOfThrown);
+}
