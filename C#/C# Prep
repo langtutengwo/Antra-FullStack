@@ -1,0 +1,43 @@
+1. reference type vs. value type
+
+2. boxing vs. unboxing
+
+3. abstract class vs. interface
+
+4. Overriding vs. Overloading
+
+5. What does constructor do in a class? Can it be overridden? Can it be overloaded?
+
+6. What does static keyword do in C#?
+
+7. Difference between Virtual method and Abstract method?
+
+8. what are delegates in C#, what are different types of built-in delegates
+
+9. Explain different access modifiers in C#
+
+10. What is the extension method in C#? examples of built-in extension methods? How to create custom extension methods?
+
+11. Ref vs. Out vs. Params
+
+12. Pass by reference vs. Pass by Value
+
+13. array vs. arrayList
+
+14. example of encapsulation, where to implement
+
+15. how do you handle exceptions? Syntax.
+
+16. what is generic, syntax to define 
+
+17. what is LINQ
+
+18. IEnumerable vs. IQuerable
+
+19. First vs. FirstOrDefault vs. Single vs. SingleOrDefault
+
+20. Any vs. All
+
+21. Skip vs. Take
+
+22. Deferred execution and Immediate execution in LINQ
