@@ -18,7 +18,7 @@ unboxing: convert the reference type to a value type
 Overriding: Methods in base class and its subclasses share the same method name and same input parameters
 Overloading: Methods in same class share the same method name, but different input parameters
 
-5. What does constructor do in a class? Can it be overridden? Can it be overloaded?
+5. What does constructor do in a class? Can it be overridden? Can it be overloaded?  May be in evaluation
 In c#, Constructor is a method that will invoke automatically whenever an instance of class or struct is created
 It can be overloaded
 
@@ -41,10 +41,10 @@ Internal. For Internal keyword, the access is limited exclusively to classes def
 Protected Internal. we can access the protected internal member only in the same assembly or in a derived class in other assemblies.
 Private Protected. We can access members inside the containing class or in a class that derives from a containing class, but only in the same assembly(project).
 
-10. What is the extension method in C#? examples of built-in extension methods? How to create custom extension methods?
+10. What is the extension method in C#? examples of built-in extension methods? How to create custom extension methods? May be in evaluation
 Extension methods enable you to "add" methods to existing types without creating a new derived type, recompiling, or otherwise modifying the original type.
-In C# we already have some built-in extension methods like Union, Where and Zip.
-public statric class StringExtension{
+In C# we already have some built-in extension methods like LinQ Union, Where and Zip.
+public static class StringExtension{
     public static int WordCount(this string str){}
 }
 
