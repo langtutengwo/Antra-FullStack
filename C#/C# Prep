@@ -1,38 +1,83 @@
 1. reference type vs. value type
+1) value type will directly hold the value, while reference type will hold the memory address or reference for this value
+2) value type are stored in stack memory, while reference types will be stored in heap memory
+3) value type will not be collected by garbage collector, while reference type will be collected by garbage collector
+4) value type can be created by Struct or Enum, but reference type can be created by class, interface, delegate, or array
+5) value type cannot accept null values, but reference types can accept null values
 
 2. boxing vs. unboxing
+boxing: convert a value type to a reference type
+unboxing: convert the reference type to a value type
 
 3. abstract class vs. interface
+ An abstract class allows you to create functionality that subclasses can implement or override. 
+ An interface only allows you to define functionality, not implement it. 
+ And whereas a class can extend only one abstract class, it can take advantage of multiple interfaces.
 
 4. Overriding vs. Overloading
+Overriding: Methods in base class and its subclasses share the same method name and same input parameters
+Overloading: Methods in same class share the same method name, but different input parameters
 
 5. What does constructor do in a class? Can it be overridden? Can it be overloaded?
+In c#, Constructor is a method that will invoke automatically whenever an instance of class or struct is created
+It can be overloaded
 
 6. What does static keyword do in C#?
+The static keyword is used to make members static that can be shared by all the class objects.
 
 7. Difference between Virtual method and Abstract method?
+Virtual methods have an implementation and provide the derived classes with the option of overriding it. 
+Abstract methods do not provide an implementation and force the derived classes to override the method.
 
 8. what are delegates in C#, what are different types of built-in delegates
+A delegate is a type that represents references to methods with a particular parameter list and return type.
+Func, Action and Predicate
 
 9. Explain different access modifiers in C#
+Public. Objects that implement public access modifiers are accessible from everywhere in a project without any restrictions.
+Private. Objects that implement private access modifier are accessible only inside a class or a structure.
+Protected. The protected keyword implies that the object is accessible inside the class and in all classes that derive from that class.
+Internal. For Internal keyword, the access is limited exclusively to classes defined within the current project assembly.
+Protected Internal. we can access the protected internal member only in the same assembly or in a derived class in other assemblies.
+Private Protected. We can access members inside the containing class or in a class that derives from a containing class, but only in the same assembly(project).
 
 10. What is the extension method in C#? examples of built-in extension methods? How to create custom extension methods?
+Extension methods enable you to "add" methods to existing types without creating a new derived type, recompiling, or otherwise modifying the original type.
+In C# we already have some built-in extension methods like Union, Where and Zip.
+public statric class StringExtension{
+    public static int WordCount(this string str){}
+}
 
 11. Ref vs. Out vs. Params
+The ref keyword indicates that a value is passed by reference.
+The out keyword causes arguments to be passed by reference. 
+By using the params keyword, you can specify a method parameter that takes a variable number of arguments.
 
 12. Pass by reference vs. Pass by Value
+passing a reference type variable to a method passes a copy of the reference, not the actual data.
+Passing a value-type variable to a method by value means passing a copy of the variable to the method.
 
 13. array vs. arrayList
+Array stores data of the same type whereas ArrayList stores data in the form of the object which may be of different types. 
+Size of an ArrayList grows dynamically while Array size remains static throughout the program.
 
 14. example of encapsulation, where to implement
 
+
 15. how do you handle exceptions? Syntax.
+Try{
+}catch (SomeException){
+}
 
 16. what is generic, syntax to define 
+public class GenericList<T>
 
 17. what is LINQ
+anguage-Integrated Query (LINQ) is the name for a set of technologies based on the integration of query capabilities directly into the C# language. 
 
 18. IEnumerable vs. IQuerable
+The principle difference is that IEnumerable will enumerate all of its elements all the time, 
+while IQueryable will enumerate elements, or even do other things, based on a query. 
 
 19. First vs. FirstOrDefault vs. Single vs. SingleOrDefault
 
@@ -41,3 +86,5 @@
 21. Skip vs. Take
 
 22. Deferred execution and Immediate execution in LINQ
+
+
