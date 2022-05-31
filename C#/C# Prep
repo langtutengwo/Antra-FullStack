@@ -15,8 +15,8 @@ unboxing: convert the reference type to a value type
  And whereas a class can extend only one abstract class, it can take advantage of multiple interfaces.
 
 4. Overriding vs. Overloading
-Overloading: Methods in base class and its subclasses share the same method name and same input parameters
-Overriding: Methods in same class share the same method name, but different input parameters
+Overriding: Methods in base class and its subclasses share the same method name and same input parameters
+Overloading: Methods in same class share the same method name, but different input parameters
 
 5. What does constructor do in a class? Can it be overridden? Can it be overloaded?  May be in evaluation
 In c#, Constructor is a method that will invoke automatically whenever an instance of class or struct is created
